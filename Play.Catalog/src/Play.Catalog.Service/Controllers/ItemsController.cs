@@ -2,8 +2,8 @@ using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
 using Play.Catalog.Service.DTOs;
 using Play.Catalog.Service.Entities;
-using Play.Catalog.Service.Repositories;
 using Play.Catalog.Service.Tools;
+using Play.Common;
 
 namespace Play.Catalog.Service.Controllers;
 
@@ -15,7 +15,7 @@ public class ItemsController : ControllerBase
     public ItemsController(IRepository<Item> itemsRepository) => this.itemsRepository = itemsRepository;
 
     [HttpGet]
-    public async Task<IEnumerable<ItemDto>> GetAsync()
+    public async Task<IEnumerable<ItemDTO>> GetAsync()
     {
         var items = (await itemsRepository.GetAll())
                     .Select(item => item.AsDto());
@@ -23,7 +23,7 @@ public class ItemsController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ItemDto>> GetByIdAsync(Guid id)
+    public async Task<ActionResult<ItemDTO>> GetByIdAsync(Guid id)
     {
         var item = await itemsRepository.Get(id);
 
@@ -37,7 +37,7 @@ public class ItemsController : ControllerBase
 
     // ActionResult é utilizado quando terá um objeto de retorno específico
     [HttpPost]
-    public async Task<ActionResult<ItemDto>> CreateAsync(CreateItemDto createItemDto)
+    public async Task<ActionResult<ItemDTO>> CreateAsync(CreateItemDTO createItemDto)
     {
         var item = new Item
         {
@@ -54,7 +54,7 @@ public class ItemsController : ControllerBase
 
     // IActionResult é utilizando apenas quando não existe um objeto de retorno
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateAsync(Guid id, UpdateItemDto updateItemDto)
+    public async Task<IActionResult> UpdateAsync(Guid id, UpdateItemDTO updateItemDto)
     {
         var existingItem = await itemsRepository.Get(id);
 

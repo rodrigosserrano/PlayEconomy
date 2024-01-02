@@ -44,3 +44,10 @@ C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\run
 C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
 C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
 C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\obj\Debug\net6.0\Play.Catalog.Service.sourcelink.json
+C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\code\Microservices\Play.Catalog\src\Play.Catalog.Service\bin\Debug\net6.0\Play.Common.dll
