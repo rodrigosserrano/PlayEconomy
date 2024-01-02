@@ -16,22 +16,10 @@ builder.Services.AddControllers(options =>
     options.SuppressAsyncSuffixInActionNames = false;
 });
 
-// Serialize UUID and Datetime when save on MongoDB
-BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
-
 serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
-// Declare Dependency Injection
-builder.Services.AddSingleton(serviceProvider =>
-{
-    var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-    var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
-    return mongoClient.GetDatabase(serviceSettings.ServiceName);
-});
-
-builder.Services.AddSingleton<IRepository<Item>, ItemsRepository>();
-// END Declare Dependency Injection
+builder.Services.AddMongo()
+                .AddMongoRepository<Item>("items");
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

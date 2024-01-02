@@ -1,10 +1,12 @@
+using Play.Catalog.Service.Entities;
+
 namespace Play.Catalog.Service.Repositories;
 
-public interface IRepository<TEntity>
+public interface IRepository<T> where T : IEntity
 {
-    Task Create(TEntity entity);
-    Task<IReadOnlyCollection<TEntity>> GetAll();
-    Task<TEntity> Get(Guid id);
+    Task Create(T entity);
+    Task<IReadOnlyCollection<T>> GetAll();
+    Task<T> Get(Guid id);
     Task Delete(Guid id);
-    Task Update(TEntity entity);
+    Task Update(T entity);
 }
