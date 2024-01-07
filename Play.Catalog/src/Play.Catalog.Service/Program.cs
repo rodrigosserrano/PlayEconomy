@@ -1,10 +1,5 @@
-using MassTransit;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Driver;
 using Play.Catalog.Service.Entities;
-using Play.Catalog.Service.Settings;
+using Play.Common.MassTransit;
 using Play.Common.MongoDB;
 using Play.Common.Settings;
 
@@ -20,20 +15,9 @@ builder.Services.AddControllers(options =>
 
 serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
-builder.Services.AddMassTransit(x =>
-{
-    x.UsingRabbitMq((context, configurator) =>
-    {
-        var rabbitMQSettings = builder.Configuration.GetSection(nameof(RabbitMQSettings)).Get<RabbitMQSettings>();
-
-        configurator.ConfigureEndpoints(context, new KebabCaseEndpointNameFormatter(serviceSettings.ServiceName, false));
-    });
-});
-
-builder.Services.AddMassTransitHostedService();
-
 builder.Services.AddMongo()
-                .AddMongoRepository<Item>("items");
+                .AddMongoRepository<Item>("items")
+                .AddMassTransitWithRabbitMq();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

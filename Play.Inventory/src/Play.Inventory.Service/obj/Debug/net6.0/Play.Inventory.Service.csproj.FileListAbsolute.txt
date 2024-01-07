@@ -58,3 +58,13 @@ C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0
 C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
 C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\Polly.dll
 C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\Polly.Extensions.Http.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\MassTransit.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\MassTransit.Abstractions.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\MassTransit.RabbitMqTransport.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\Microsoft.Extensions.Diagnostics.HealthChecks.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\Play.Catalog.Contracts.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\System.Text.Json.dll
+C:\code\Microservices\Play.Inventory\src\Play.Inventory.Service\bin\Debug\net6.0\System.Threading.Channels.dll
