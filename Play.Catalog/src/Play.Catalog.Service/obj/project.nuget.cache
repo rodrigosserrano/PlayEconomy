@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "w7c5Z3DpoDacAEKVR0fwD8Ua8MgPU+0wcYgKyxJgYZlBndz+3l08XdpfuUSWmQb2/QjIglgPUvC/kT05xV53Dw==",
+  "dgSpecHash": "lxsupcDA76Mmb5/8kSn0nNManf6mLs8QvWXT1HFkvITMf53TKMovGUp+n/Qp1S7diyLd9/nsofH9oemHbxzXnA==",
   "success": true,
   "projectFilePath": "C:\\code\\Microservices\\Play.Catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,7 @@
     "C:\\Users\\rodri\\.nuget\\packages\\mongodb.driver\\2.23.1\\mongodb.driver.2.23.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\mongodb.driver.core\\2.23.1\\mongodb.driver.core.2.23.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\mongodb.libmongocrypt\\1.8.0\\mongodb.libmongocrypt.1.8.0.nupkg.sha512",
-    "C:\\Users\\rodri\\.nuget\\packages\\play.common\\1.0.1\\play.common.1.0.1.nupkg.sha512",
+    "C:\\Users\\rodri\\.nuget\\packages\\play.common\\1.0.2\\play.common.1.0.2.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\rabbitmq.client\\6.8.1\\rabbitmq.client.6.8.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",
@@ -49,7 +49,8 @@
     "C:\\Users\\rodri\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\system.text.json\\6.0.8\\system.text.json.6.0.8.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
-    "C:\\Users\\rodri\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
+    "C:\\Users\\rodri\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512",
+    "C:\\Users\\rodri\\.nuget\\packages\\play.catalog.contracts\\1.0.0\\play.catalog.contracts.1.0.0.nupkg.sha512"
   ],
   "logs": []
 }

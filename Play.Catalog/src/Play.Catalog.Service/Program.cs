@@ -4,7 +4,7 @@ using Play.Common.MongoDB;
 using Play.Common.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
-ServiceSettings serviceSettings;
+const string AllowedOriginSetting = "AllowerdOrigin";
 
 // Add services to the container.
 
@@ -12,8 +12,6 @@ builder.Services.AddControllers(options =>
 {
     options.SuppressAsyncSuffixInActionNames = false;
 });
-
-serviceSettings = builder.Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
 
 builder.Services.AddMongo()
                 .AddMongoRepository<Item>("items")
@@ -30,6 +28,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors(
+        builderCors => builderCors.WithOrigins(builder.Configuration[AllowedOriginSetting])
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+    );
 }
 
 app.UseHttpsRedirection();
