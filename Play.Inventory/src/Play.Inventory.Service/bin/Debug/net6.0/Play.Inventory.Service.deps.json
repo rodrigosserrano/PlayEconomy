@@ -10,7 +10,7 @@
         "dependencies": {
           "Microsoft.Extensions.Http.Polly": "8.0.0",
           "Play.Catalog.Contracts": "1.0.0",
-          "Play.Common": "1.0.1",
+          "Play.Common": "1.0.2",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -344,7 +344,7 @@
           }
         }
       },
-      "Play.Common/1.0.1": {
+      "Play.Common/1.0.2": {
         "dependencies": {
           "MassTransit": "8.1.3",
           "MassTransit.RabbitMQ": "8.1.3",
@@ -719,12 +719,12 @@
       "path": "play.catalog.contracts/1.0.0",
       "hashPath": "play.catalog.contracts.1.0.0.nupkg.sha512"
     },
-    "Play.Common/1.0.1": {
+    "Play.Common/1.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZWDPu8CaPNi14z7MweDXJUrN+x3NN0UCeppbbDl926pZmPeqsPIWPIk+DOVg0u7ud78Jid/Vax6UpAhZ90EC/A==",
-      "path": "play.common/1.0.1",
-      "hashPath": "play.common.1.0.1.nupkg.sha512"
+      "sha512": "sha512-PpJdZ5qLNYwsSIWOaEsSvUl/4wkvf8/DJIWGVYk9WD1JmNagLqAwGAZ+iee+CqzFWoBYfhmAQU//11j0RRT+uQ==",
+      "path": "play.common/1.0.2",
+      "hashPath": "play.common.1.0.2.nupkg.sha512"
     },
     "Polly/7.2.4": {
       "type": "package",

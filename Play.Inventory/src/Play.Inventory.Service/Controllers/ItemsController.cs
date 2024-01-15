@@ -42,19 +42,19 @@ public class ItemsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CreateAsync(GrandItemsDTO grandItemsDTO)
+    public async Task<ActionResult> CreateAsync(GrantItemsDTO grantItemsDTO)
     {
         var inventoryItem = await itemsRepository.Get(item =>
-                item.UserId == grandItemsDTO.UserId && item.CatalogItemId == grandItemsDTO.CatalogItemId
+                item.UserId == grantItemsDTO.UserId && item.CatalogItemId == grantItemsDTO.CatalogItemId
             );
 
         if (inventoryItem == null)
         {
             inventoryItem = new InventoryItem
             {
-                CatalogItemId = grandItemsDTO.CatalogItemId,
-                UserId = grandItemsDTO.UserId,
-                Quantity = grandItemsDTO.Quantity,
+                CatalogItemId = grantItemsDTO.CatalogItemId,
+                UserId = grantItemsDTO.UserId,
+                Quantity = grantItemsDTO.Quantity,
                 AcquiredDate = DateTimeOffset.UtcNow
             };
 
@@ -62,7 +62,7 @@ public class ItemsController : ControllerBase
         }
         else
         {
-            inventoryItem.Quantity += grandItemsDTO.Quantity;
+            inventoryItem.Quantity += grantItemsDTO.Quantity;
             await itemsRepository.Update(inventoryItem);
         }
 

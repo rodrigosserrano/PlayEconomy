@@ -40,4 +40,28 @@ public static class Extensions
 
         return services;
     }
+
+    public static IServiceCollection AddIndex<T>(this IServiceCollection services, string collectionName, string index) where T : IEntity
+    {
+        services.AddSingleton(serviceProvider =>
+        {
+            var database = serviceProvider.GetService<IMongoDatabase>();
+            var dbCollection = database.GetCollection<T>(collectionName);
+
+            var key = Builders<T>.IndexKeys.Ascending(index);
+
+            var options = new CreateIndexOptions()
+            {
+                Unique = true,
+                Background = false
+            };
+
+            var indexDefinition = new CreateIndexModel<T>(key, options);
+            dbCollection.Indexes.CreateOne(indexDefinition);
+
+            return dbCollection;
+        });
+
+        return services;
+    }
 }

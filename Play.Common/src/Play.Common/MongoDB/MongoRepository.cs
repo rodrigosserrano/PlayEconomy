@@ -44,7 +44,6 @@ public class MongoRepository<T> : IRepository<T> where T : IEntity
 
         await dbCollection.InsertOneAsync(entity);
     }
-
     public async Task Update(T entity)
     {
         if (entity == null)
