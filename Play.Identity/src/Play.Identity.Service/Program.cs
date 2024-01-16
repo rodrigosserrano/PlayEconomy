@@ -15,9 +15,12 @@ builder.Services.AddControllers(
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var collectionName = "users";
+
 builder.Services.AddMongo()
-                .AddIndex<User>("users", "Email")
-                .AddMongoRepository<User>("users");
+                .AddIndex<User>(collectionName, "Email")
+                .AddIndex<User>(collectionName, "Nickname")
+                .AddMongoRepository<User>(collectionName);
 // .AddMassTransitWithRabbitMq();
 
 var app = builder.Build();

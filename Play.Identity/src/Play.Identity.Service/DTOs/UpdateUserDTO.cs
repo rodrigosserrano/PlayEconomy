@@ -1,10 +1,13 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Play.Identity.Service.DTOs;
 
 public record UpdateUserDTO(
-    [Required] string Name,
-    [Required] string Nickname,
-    [Required, EmailAddress] string Email,
-    [Required] string Password
+    string Name,
+    string Nickname,
+    [EmailAddress] string Email,
+    [PasswordPropertyText, MinLength(8)] string OldPassword,
+    [PasswordPropertyText, MinLength(8)] string NewPassword,
+    double Balance
 );

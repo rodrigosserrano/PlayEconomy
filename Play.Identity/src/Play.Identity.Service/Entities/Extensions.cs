@@ -7,9 +7,11 @@ public static class Extensions
     public static UserDTO AsDTO(this User user)
     {
         return new UserDTO(
+            Id: user.Id,
             Name: user.Name,
             Nickname: user.Nickname,
-            Email: user.Email
+            Email: user.Email,
+            Balance: user.Balance
         );
     }
 }
