@@ -51,3 +51,15 @@ C:\code\Microservices\Play.Identity\src\Play.Identity.Service\obj\Debug\net8.0\r
 C:\code\Microservices\Play.Identity\src\Play.Identity.Service\obj\Debug\net8.0\Play.Identity.Service.pdb
 C:\code\Microservices\Play.Identity\src\Play.Identity.Service\obj\Debug\net8.0\Play.Identity.Service.genruntimeconfig.cache
 C:\code\Microservices\Play.Identity\src\Play.Identity.Service\obj\Debug\net8.0\ref\Play.Identity.Service.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Scrutor.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Swashbuckle.AspNetCore.Filters.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+C:\code\Microservices\Play.Identity\src\Play.Identity.Service\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

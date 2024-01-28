@@ -11,6 +11,7 @@ public static class Extensions
             Name: user.Name,
             Nickname: user.Nickname,
             Email: user.Email,
+            Password: user.Password,
             Balance: user.Balance
         );
     }

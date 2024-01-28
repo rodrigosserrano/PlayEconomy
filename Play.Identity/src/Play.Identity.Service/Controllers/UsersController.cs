@@ -1,4 +1,5 @@
 using MassTransit.Initializers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Play.Common;
@@ -16,6 +17,7 @@ public class UsersController : ControllerBase
     public UsersController(IRepository<User> userRepository) => this.userRepository = userRepository;
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<UserDTO>>> GetAsync()
     {
         var users = (await userRepository.GetAll())
@@ -31,6 +33,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<ActionResult<UserDTO>> GetByIdAsync(Guid id)
     {
         var user = (await userRepository.Get(id)).AsDTO();
@@ -44,6 +47,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<UserDTO>> CreateAsync(CreateUserDTO createUserDTO)
     {
         var user = new User
@@ -76,6 +80,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<ActionResult<UserDTO>> UpdateAsync(UpdateUserDTO updateUserDTO, Guid id)
     {
         var existingUser = await userRepository.Get(i => i.Id == id);
@@ -113,6 +118,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<ActionResult> DeleteAsync(Guid id)
     {
         var existingUser = await userRepository.Get(id);

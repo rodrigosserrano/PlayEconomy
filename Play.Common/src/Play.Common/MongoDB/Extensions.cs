@@ -21,10 +21,10 @@ public static class Extensions
         {
             var configuration = serviceProvider.GetService<IConfiguration>();
 
-            var serviceSettings = configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+            var serviceSettings = configuration!.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
             var mongoDbSettings = configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
-            var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
-            return mongoClient.GetDatabase(serviceSettings.ServiceName);
+            var mongoClient = new MongoClient(mongoDbSettings!.ConnectionString);
+            return mongoClient.GetDatabase(serviceSettings!.ServiceName);
         });
 
         return services;
@@ -35,7 +35,7 @@ public static class Extensions
         services.AddSingleton<IRepository<T>>(serviceProvider =>
         {
             var database = serviceProvider.GetService<IMongoDatabase>();
-            return new MongoRepository<T>(database, collectionName);
+            return new MongoRepository<T>(database!, collectionName);
         });
 
         return services;
@@ -46,7 +46,7 @@ public static class Extensions
         services.AddSingleton(serviceProvider =>
         {
             var database = serviceProvider.GetService<IMongoDatabase>();
-            var dbCollection = database.GetCollection<T>(collectionName);
+            var dbCollection = database!.GetCollection<T>(collectionName);
 
             var key = Builders<T>.IndexKeys.Ascending(index);
 
