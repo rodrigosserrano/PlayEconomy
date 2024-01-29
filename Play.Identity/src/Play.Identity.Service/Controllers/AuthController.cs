@@ -1,18 +1,19 @@
-using MassTransit.Initializers;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
 using Play.Common;
-using Play.Identity.Service.Auth;
+using Play.Common.Auth;
+using Play.Common.Auth.DTOs;
 using Play.Identity.Service.DTOs;
+using Play.Identity.Service.DTOs.Auth;
 using Play.Identity.Service.Entities;
-using static Play.Identity.Service.DTOs.ServiceResponse;
 
 namespace Play.Identity.Service.Controllers;
 
 [ApiController]
 [Route("auth")]
-public class AuthController(IRepository<User> userRepository, Token token) : ControllerBase
+public class AuthController(IRepository<User> userRepository, Auth auth, IRepository<Session> sessionRepository) : ControllerBase
 {
     [HttpPost("register")]
     public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDto)
@@ -47,24 +48,66 @@ public class AuthController(IRepository<User> userRepository, Token token) : Con
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<LoginResponse>> Login(LoginDTO login)
+    public async Task<ActionResult<AuthResponseDTO>> Login(LoginDTO login)
     {
         if (login is null)
         {
-            return new LoginResponse(null!, "Login container is empty");
+            return BadRequest("Login container is empty");
         }
 
         var user = await userRepository.Get(u => u.Email == login.Email);
         if (user is null)
         {
-            return new LoginResponse(null!, "Invalid user or password");
+            return BadRequest("Invalid user or password");
         }
 
         if (!BCrypt.Net.BCrypt.Verify(login.Password, user.Password))
         {
-            return new LoginResponse(null!, "Invalid user or password");
+            return BadRequest("Invalid user or password");
         }
 
-        return new LoginResponse(token.GenerateToken(user.AsDTO()), "Login successful");
+        var tokenInfo = auth.GenAccessToken(user.AsIdentity());
+
+        await sessionRepository.Create(new Session
+        {
+            UserId = user.Id,
+            AccessToken = tokenInfo.AccessToken,
+            ExpiresAt = DateTime.UtcNow.AddSeconds(tokenInfo.ExpiresIn),
+            IsValid = true,
+            RefreshToken = tokenInfo.RefreshToken
+        });
+
+        return Ok(tokenInfo);
     }
+
+    [HttpPost("refresh")]
+    public async Task<ActionResult<AuthResponseDTO>> RefreshToken(RefreshTokenDTO refreshTokenDto)
+    {
+        var session = await sessionRepository.Get(s => s.AccessToken == refreshTokenDto.AccessToken);
+
+        if (session.RefreshToken != refreshTokenDto.RefreshToken || session.ExpiresAt < DateTime.UtcNow)
+        {
+            return Unauthorized();
+        }
+
+        var user = await userRepository.Get(session.UserId);
+
+        session.IsValid = false;
+
+        await sessionRepository.Update(session);
+
+        var tokenInfo = auth.GenAccessToken(user.AsIdentity());
+
+        await sessionRepository.Create(new Session
+        {
+            UserId = user.Id,
+            AccessToken = tokenInfo.AccessToken,
+            ExpiresAt = DateTime.UtcNow.AddSeconds(tokenInfo.ExpiresIn),
+            IsValid = true,
+            RefreshToken = tokenInfo.RefreshToken
+        });
+
+        return Ok(tokenInfo);
+    }
+
 }

@@ -1,13 +1,11 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Play.Common.MongoDB;
 using Play.Identity.Service.Entities;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Play.Identity.Service.Settings;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
-using Play.Identity.Service.Auth;
+using Play.Common.Auth;
+using Play.Identity.Service.Controllers;
+using Play.Identity.Service.DTOs.Auth;
+using Play.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 // const string AllowedOriginSetting = "AllowerdOrigin";
@@ -26,38 +24,11 @@ var collectionName = "users";
 builder.Services.AddMongo()
                 .AddIndex<User>(collectionName, "Email")
                 .AddIndex<User>(collectionName, "Nickname")
-                .AddMongoRepository<User>(collectionName);
+                .AddMongoRepository<User>(collectionName)
+                .AddMongoRepository<Session>("sessions")
+                .AddAuth();
 
 // .AddMassTransitWithRabbitMq();
-
-// Identity
-// builder.Services.AddIdentity<User, IdentityRole>()
-//     .AddSignInManager()
-//     .AddRoles<IdentityRole>();
-
-var authSettings = builder.Configuration.GetSection(nameof(AuthSettings)).Get<AuthSettings>()!;
-
-// JWT
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateIssuerSigningKey = true,
-        // ValidateLifetime = true,
-        ValidIssuer = authSettings.Issuer,
-        ValidAudience = authSettings.Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(authSettings.Key)),
-    };
-});
-
-// Resolve DI 
-builder.Services.AddScoped(_ => new Token(builder.Configuration));
 
 // Add authentication to Swagger UI
 builder.Services.AddSwaggerGen(options =>

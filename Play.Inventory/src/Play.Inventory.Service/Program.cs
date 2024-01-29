@@ -1,9 +1,12 @@
+using Microsoft.OpenApi.Models;
+using Play.Common.Auth;
 using Play.Common.MassTransit;
 using Play.Common.MongoDB;
 using Play.Inventory.Service.Clients;
 using Play.Inventory.Service.Entities;
 using Polly;
 using Polly.Timeout;
+using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -13,12 +16,26 @@ builder.Services.AddControllers(
 );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// builder.Services.AddSwaggerGen();
 
 builder.Services.AddMongo()
                 .AddMongoRepository<InventoryItem>("inventoryitems")
                 .AddMongoRepository<CatalogItem>("catalogitems")
-                .AddMassTransitWithRabbitMq();
+                .AddMassTransitWithRabbitMq()
+                .AddAuth();
+
+// Add authentication to Swagger UI
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
+});
 
 // AddCatalogClient(builder);
 

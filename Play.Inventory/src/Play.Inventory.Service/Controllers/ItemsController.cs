@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Play.Common;
 using Play.Inventory.Service.Clients;
@@ -8,6 +9,7 @@ namespace Play.Inventory.Service.Controllers;
 
 [ApiController]
 [Route("items")]
+[Authorize]
 public class ItemsController : ControllerBase
 {
     private readonly IRepository<InventoryItem> itemsRepository;
@@ -21,8 +23,12 @@ public class ItemsController : ControllerBase
 
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<InventoryItemDTO>>> GetAsync(Guid userId)
+    public async Task<ActionResult<IEnumerable<InventoryItemDTO>>> GetAsync()
     {
+        var userId = HttpContext.User.Identity!.IsAuthenticated
+           ? Guid.Parse(HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")!.Value!)
+           : Guid.Empty;
+
         if (userId == Guid.Empty)
         {
             return BadRequest();
@@ -44,8 +50,17 @@ public class ItemsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> CreateAsync(GrantItemsDTO grantItemsDTO)
     {
+        var userId = HttpContext.User.Identity!.IsAuthenticated
+           ? Guid.Parse(HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")!.Value!)
+           : Guid.Empty;
+
+        if (userId == Guid.Empty)
+        {
+            return BadRequest();
+        }
+
         var inventoryItem = await itemsRepository.Get(item =>
-                item.UserId == grantItemsDTO.UserId && item.CatalogItemId == grantItemsDTO.CatalogItemId
+                item.UserId == userId && item.CatalogItemId == grantItemsDTO.CatalogItemId
             );
 
         if (inventoryItem == null)
@@ -53,7 +68,7 @@ public class ItemsController : ControllerBase
             inventoryItem = new InventoryItem
             {
                 CatalogItemId = grantItemsDTO.CatalogItemId,
-                UserId = grantItemsDTO.UserId,
+                UserId = userId,
                 Quantity = grantItemsDTO.Quantity,
                 AcquiredDate = DateTimeOffset.UtcNow
             };
