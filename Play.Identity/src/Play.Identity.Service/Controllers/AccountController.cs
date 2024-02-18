@@ -65,7 +65,6 @@ public class AccountController(IRepository<User> userRepository) : ControllerBas
         existingUser.Name = updateUserDTO.Name;
         existingUser.Nickname = updateUserDTO.Nickname;
         existingUser.Email = updateUserDTO.Email;
-        existingUser.Balance = updateUserDTO.Balance;
         existingUser.Password = password;
 
         await userRepository.Update(existingUser);
