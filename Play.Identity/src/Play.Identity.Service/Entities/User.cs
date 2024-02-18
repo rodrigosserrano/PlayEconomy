@@ -10,4 +10,5 @@ public class User : IEntity
     public required string Email { get; set; }
     public required string Password { get; set; }
     public double Balance { get; set; }
+    public required string Role { get; set; }
 }

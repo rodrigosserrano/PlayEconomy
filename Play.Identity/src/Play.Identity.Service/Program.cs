@@ -22,10 +22,15 @@ builder.Services.AddEndpointsApiExplorer();
 var collectionName = "users";
 
 builder.Services.AddMongo()
-                .AddIndex<User>(collectionName, "Email")
+
                 .AddIndex<User>(collectionName, "Nickname")
+                .AddIndex<User>(collectionName, "Email")
                 .AddMongoRepository<User>(collectionName)
+
+                .AddMongoRepository<Role>("roles")
+
                 .AddMongoRepository<Session>("sessions")
+
                 .AddAuth();
 
 // .AddMassTransitWithRabbitMq();

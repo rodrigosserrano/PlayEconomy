@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Play.Common;
-using Play.Identity.Service.DTOs;
+using Play.Identity.Service.DTOs.User;
 using Play.Identity.Service.Entities;
 
 namespace Play.Identity.Service.Controllers;

@@ -2878,7 +2878,7 @@
     "C:\\Users\\rodri\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "1.0.25",
     "restore": {
       "projectUniqueName": "C:\\code\\Microservices\\Play.Common\\src\\Play.Common\\Play.Common.csproj",
       "projectName": "Play.Common",

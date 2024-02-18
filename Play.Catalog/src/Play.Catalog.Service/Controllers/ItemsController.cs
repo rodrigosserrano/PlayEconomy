@@ -6,6 +6,7 @@ using Play.Catalog.Service.Entities;
 using Play.Catalog.Service.Tools;
 using Play.Common;
 using Play.Catalog.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Play.Catalog.Service.Controllers;
 
@@ -46,6 +47,7 @@ public class ItemsController : ControllerBase
 
     // ActionResult é utilizado quando terá um objeto de retorno específico
     [HttpPost]
+    [Authorize(Roles = "admin")]
     public async Task<ActionResult<ItemDTO>> CreateAsync(CreateItemDTO createItemDto)
     {
         var item = new Item
@@ -65,6 +67,7 @@ public class ItemsController : ControllerBase
 
     // IActionResult é utilizando apenas quando não existe um objeto de retorno
     [HttpPut("{id}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> UpdateAsync(Guid id, UpdateItemDTO updateItemDto)
     {
         var existingItem = await itemsRepository.Get(id);
@@ -86,6 +89,7 @@ public class ItemsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> DeleteAsync(Guid id)
     {
         var item = await itemsRepository.Get(id);

@@ -1,4 +1,4 @@
-namespace Play.Identity.Service.DTOs;
+namespace Play.Identity.Service.DTOs.User;
 
 public record UserDTO(
     Guid Id,
@@ -6,5 +6,6 @@ public record UserDTO(
     string Nickname,
     string Email,
     string Password,
-    double Balance
+    double Balance,
+    string Role
 );

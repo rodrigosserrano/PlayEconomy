@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Play.Identity.Service.DTOs;
+namespace Play.Identity.Service.DTOs.User;
 
 public class CreateUserDTO
 {
@@ -21,4 +21,5 @@ public class CreateUserDTO
     public required string ConfirmPassword { get; set; }
 
     public double Balance { get; set; } = 0;
+    public string Role { get; set; } = "user";
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yGhAUATr+IsDONQBYhUQDVnXU8xCUj9A3qXWCaVXqPcvcG0+yEv/LFC46cV+EkYxXca1jqeGTatNTfJD35djGA==",
+  "dgSpecHash": "uuMrhkfGDAlLhTFldDkP0fwNJNMcUSrUBTfJRhyhKfXMRi2jEmArEHpJro0P9NaEYJ3S3SgVrASyBf+WvXDhPA==",
   "success": true,
   "projectFilePath": "C:\\code\\Microservices\\Play.Identity\\src\\Play.Identity.Service\\Play.Identity.Service.csproj",
   "expectedPackageFiles": [
@@ -41,7 +41,7 @@
     "C:\\Users\\rodri\\.nuget\\packages\\mongodb.driver\\2.23.1\\mongodb.driver.2.23.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\mongodb.driver.core\\2.23.1\\mongodb.driver.core.2.23.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\mongodb.libmongocrypt\\1.8.0\\mongodb.libmongocrypt.1.8.0.nupkg.sha512",
-    "C:\\Users\\rodri\\.nuget\\packages\\play.common\\1.0.23\\play.common.1.0.23.nupkg.sha512",
+    "C:\\Users\\rodri\\.nuget\\packages\\play.common\\1.0.25\\play.common.1.0.25.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\rabbitmq.client\\6.8.1\\rabbitmq.client.6.8.1.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\scrutor\\3.3.0\\scrutor.3.3.0.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Play.Common;
 using Play.Common.Auth;
 using Play.Common.Auth.DTOs;
-using Play.Identity.Service.DTOs;
+using Play.Identity.Service.DTOs.User;
 using Play.Identity.Service.DTOs.Auth;
 using Play.Identity.Service.Entities;
 
@@ -24,7 +24,8 @@ public class AuthController(IRepository<User> userRepository, Auth auth, IReposi
             Nickname = registerDto.Nickname,
             Email = registerDto.Email,
             Password = BCrypt.Net.BCrypt.HashPassword(registerDto.Password),
-            Balance = 0
+            Balance = 0,
+            Role = "user"
         };
 
         var existingUser = await userRepository.Get(check => check.Email == registerDto.Email);
